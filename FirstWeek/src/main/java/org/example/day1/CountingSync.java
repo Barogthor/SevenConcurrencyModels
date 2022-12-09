@@ -1,4 +1,4 @@
-package org.example;
+package org.example.day1;
 
 public class CountingSync {
     public static void main(String[] args) throws InterruptedException {

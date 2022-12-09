@@ -1,4 +1,4 @@
-package org.example;
+package org.example.day1;
 
 public class Puzzle {
     static boolean answerReady = false;
