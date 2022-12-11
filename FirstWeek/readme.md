@@ -18,14 +18,26 @@ It is an anti pattern because the compiler can reorganize instructions so that t
   to be “fair” ? Why might you choose to use a fair lock? Why might you not ?
 
 
+Fairness is used to allow the longest waiting thread to have the lock (aka FIFO). But it adds overhead and can be slower than without using fairness. 
+Using fairness make sure that some threads are not starving for a long time. But if the program comes to a state that it has starving thread then maybe it's time 
+to rethink the number of threads.
 - What is ReentrantReadWriteLock? How does it differ from ReentrantLock? When
   might you use it ?
 
 
+ReentrantLock lock down access whether it is for read or write and only one lock can be alive. 
+But ReadWriteLock has both a write lock and read lock. 
+It allows any number of read access as long as no write lock is held. 
+A write lock can only have one held and it blocks any read access until the write lock is released.
+This lock can be useful when a lot of concurrent read access are expected but update are fewer in number and short.
 - What is a “spurious wakeup” ? When can one happen and why doesn’t a
   well-written program care if one does ?
 
 
+A "spurious wakeup" is a thread waiting a condition that get a signal that the condition is fulfilled and can resume its execution 
+but when it checks the condition another thread changed the condition and can only wait for another signal. This is a condition race.
+A well written program should not have this kind of wake up since if more than one thread is waiting for the condition there will always be at least one thread losing the race. 
+Only one thread should receive the signal and not all of them. 
 - What is AtomicIntegerFieldUpdater ? How does it differ from AtomicInteger? When
   might you use it ?
 
@@ -46,3 +58,7 @@ It is an anti pattern because the compiler can reorganize instructions so that t
   hand-over-hand locking. Benchmark it against the other version. Does
   hand-over-hand locking provide any performance advantage? When might
   it be a good choice ? When might it not ?
+
+
+The hand over locking add unecessary lock/unlock overhead for single thread use. 
+We see its advantage once we try to insert concurrently on multiple thread against the single lock.

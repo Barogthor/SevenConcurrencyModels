@@ -10,7 +10,7 @@ package org.example.day2;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Counting {
+public class CountingAtomic {
   public static void main(String[] args) throws InterruptedException {
     
     final AtomicInteger counter = new AtomicInteger();
