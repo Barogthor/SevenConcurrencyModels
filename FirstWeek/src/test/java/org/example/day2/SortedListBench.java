@@ -14,7 +14,7 @@ class SortedListBench {
     private static final int MAX_RAND = 100_000;
     private static final int CONCURRENT_ITERATION = MAX_ITERATION / NUM_THREADS;
 
-    private class HandOverLockListRunnable implements Runnable {
+    private static class HandOverLockListRunnable implements Runnable {
         private HandOverLockSortedList list;
         public HandOverLockListRunnable(HandOverLockSortedList list) {
             this.list = list;
@@ -33,7 +33,7 @@ class SortedListBench {
             }
         }
     }
-    private class SingleLockListRunnable implements Runnable {
+    private static class SingleLockListRunnable implements Runnable {
         private SingleLockSortedList list;
         public SingleLockListRunnable(SingleLockSortedList list) {
             this.list = list;
