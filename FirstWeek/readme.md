@@ -77,9 +77,19 @@ We see its advantage once we try to insert concurrently on multiple thread again
   might you use one, and when the other ?
 
 
+A countDownLatch like CyclicBarrier is a Synchronization object between thread. CountDownLatch is a one time use.
+Threads await that the counter reach 0 before proceding further. 
+It can be useful when you to make sure that all threads start working at the same time.
+Meanwhile CyclicBarrier the counter can be reset. 
+Useful when some work that needs parallelization but need a synchronization between each worker completion at the end to proceed further.
+
 - What is Amdahl’s law? What does it say about the maximum theoretical
   speedup we might be able to get for our word-counting algorithm ?
 
+  
+The amdahl's law speaks about the theorical speedup of an algorithm/process in using parallelization.
+The maximum theorical speedup depends on the critical section that cannot be parallelized. 
+In CountWord we only have one thread to parse page so the maximum speedup corresponds to the time to parse all page without counting words with one thread.
 
 - Rewrite the producer-consumer code to use a separate “end of data” flag
   instead of a poison pill. Make sure that your solution correctly handles
@@ -94,3 +104,7 @@ We see its advantage once we try to insert concurrently on multiple thread again
   graphs differ from one computer to another ? If you could run it on a
   computer with 32 cores, do you think you would see anything close to a
   32x speedup ?
+
+
+There is no further improvement (x4-5 speedup) after 6-8 threads working in parallel to count words on my computer  (12 core or 20 threads) and sometimes the queue has 0 page waiting to be processed so it's not impossible though short that some worker thread are waiting the queue to be filled.
+In this case, even if more threads are added they won't speedup, they might slow down though not much and will experience longer starving state and by doing so wasting computer resources.
