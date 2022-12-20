@@ -1,2 +1,5 @@
 /.idea
 *.iml
+
+**/.cpcache/
+**dump-wiki.xml

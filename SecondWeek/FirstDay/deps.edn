@@ -1,0 +1,11 @@
+{:deps
+  {
+    clojure.java-time/clojure.java-time {:mvn/version "1.1.0"}
+    train-arithm/train {:local/root "../libs/first/train-arithm"}
+    word-count/word-count {:local/root "../libs/first/word-count"}
+  }
+}
+
+
+
+
