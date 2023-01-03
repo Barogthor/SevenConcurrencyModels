@@ -7,5 +7,5 @@
 
 (defn get-words [text] (re-seq #"\w+" text))
 
-(defn count-pages-word [pages]
+(defn count-words-sequential [pages]
   (word-frequencies (mapcat get-words pages)))

@@ -1,0 +1,11 @@
+{:deps
+  {
+    word-count/word-count {:local/root "../libs/first/word-count"}
+    word-count/pages {:local/root "../libs/first/word-count"}
+    reducers/my-reducers {:local/root "../libs/second/reducers"}
+  }
+}
+
+
+
+
