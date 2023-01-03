@@ -9,7 +9,7 @@
 
 (defn count-words-parallel [pages]
   (reduce (partial merge-with + )
-    (pmap #(wd/word-frequencies (wd/get-words %)) pages)))
+    (pmap #(frequencies (wd/get-words %)) pages)))
 
 
 (defn count-words [pages]
@@ -21,9 +21,9 @@
 )
 
 (defn run [opts]   
-  ;;(println "Count parallel :")
-	;;(time (count-words-parallel (get-pages "../dump-wiki.xml")) )
-  (println "Count sequential :")
+  (println "Count parallel :")
+	(time (count-words-parallel (get-pages "../dump-wiki.xml")) )
+  (println "Count partition :")
 	(time (count-words (get-pages "../dump-wiki.xml")) )
   ;;(open "../dump-wiki.xml")
   (shutdown-agents)
