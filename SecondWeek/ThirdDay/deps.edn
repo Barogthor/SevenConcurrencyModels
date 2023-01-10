@@ -1,0 +1,10 @@
+{:deps
+  {
+    reducers/my-reducers {:local/root "../libs/second/reducers"}
+    sentences/sentences {:local/root "../libs/third/sentences"}
+  }
+}
+
+
+
+
